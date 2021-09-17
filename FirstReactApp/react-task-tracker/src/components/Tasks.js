@@ -13,7 +13,7 @@ const Tasks = function ({ tasks, deleteTask, toogleReminder }) {
                 }
             </ul>
         }
-        { tasks.length == 0 &&
+        { tasks.length === 0 &&
             <p>No task in list</p>
         }
             

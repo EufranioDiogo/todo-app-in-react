@@ -1,51 +1,24 @@
-import { useState } from 'react';
-import Header from './components/Header';
-import Tasks from './components/Tasks';
-import AddTask from './components/AddTask';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Footer from './components/Footer';
+import About from './components/About';
+import MainApp from './components/MainApp';
+
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      text: 'Something',
-      day: 'Out 9 at 20:00pm',
-      reminder: false
-    },
-    {
-      id: 2,
-      text: 'Something2',
-      day: 'Out 10 at 22:00pm',
-      reminder: false
-    },
-    {
-      id: 3,
-      text: 'Something3',
-      day: 'Out 12 at 80:00pm',
-      reminder: true
-    }
-  ]);
-
-  const deleteTask = function (taskId) {
-    setTasks(tasks.filter(task => task.id != taskId));
-  }
-
-  const reminderTask = function (taskId) {
-    setTasks(
-      tasks.map(task => {
-        if (task.id == taskId) {
-          task.reminder = !task.reminder;
-        }
-        return task;
-      })
-    );
-  }
-
+  
   return (
-    <div className="App">
-      <Header></Header>
-      <AddTask></AddTask>
-      <Tasks tasks={tasks} deleteTask={deleteTask} toogleReminder={reminderTask}></Tasks>
-    </div>
+    <Router>
+      <div className="App">
+        <Route path="/" exact render={() => (
+            <MainApp></MainApp>
+          )
+        }></Route>
+
+        <Route path="/about" component={About}></Route>
+        <Footer></Footer>
+      </div>
+    </Router >
+
   );
 }
 
